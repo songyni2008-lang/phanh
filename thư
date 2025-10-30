@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bé Thư ơi 💖</title>
+
+    <!-- Font dễ thương -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Protest Riot', cursive;
+      }
+
+      body {
+        background-color: #ffe6f0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .cat-img {
+        width: 250px;
+        border-radius: 10px;
+      }
+
+      .title {
+        color: #ff4d6d;
+        font-size: 1.6em;
+        margin-top: 20px;
+      }
+
+      .title span {
+        display: block;
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+
+      .buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .btn {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn--yes {
+        background-color: #ff99cc;
+        color: white;
+      }
+
+      .btn--no {
+        background-color: #999;
+        color: white;
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* Nút phát nhạc */
+      .music-btn {
+        margin-top: 20px;
+        background-color: #ffb6c1;
+        color: white;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        cursor: pointer;
+      }
+
+      /* Hiệu ứng trái tim bay */
+      .heart {
+        position: fixed;
+        bottom: 0;
+        color: #ff4d6d;
+        font-size: 20px;
+        animation: flyUp 4s linear forwards;
+      }
+
+      @keyframes flyUp {
+        0% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) scale(0.5);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="container">
+      <img
+        class="cat-img"
+        src="https://media.giphy.com/media/SVkhYVCi8fKPKvypi6/giphy.gif"
+        alt="Cute cat"
+      />
+      <p class="title">
+        Bé Thư ơi cho mình xin lỗi nhó 😭
+        <span>Bé hong chọn hoặc thoát là tha lỗi cho a đó</span>
+      </p>
+
+      <div class="buttons">
+        <button class="btn btn--yes">Em chấp nhận</button>
+        <button class="btn btn--no">Không bao giờ</button>
+      </div>
+
+      <button class="music-btn" id="playMusic">🎵 Phát nhạc</button>
+    </main>
+
+    <!-- Nhạc nền -->
+    <audio id="bgMusic" loop>
+      <source
+        src="https://cdn.pixabay.com/download/audio/2023/03/08/audio_eb6b04f639.mp3?filename=cute-143857.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      const btnYes = document.querySelector('.btn--yes');
+      const btnNo = document.querySelector('.btn--no');
+      const playMusic = document.getElementById('playMusic');
+      const bgMusic = document.getElementById('bgMusic');
+
+      btnYes.addEventListener('click', () => {
+        alert('Yeee Bé Thư tha lỗi cho a rồi 😭💖');
+      });
+
+      btnNo.addEventListener('mouseover', () => {
+        const x = Math.random() * window.innerWidth * 0.6;
+        const y = Math.random() * window.innerHeight * 0.6;
+        btnNo.style.position = 'absolute';
+        btnNo.style.left = x + 'px';
+        btnNo.style.top = y + 'px';
+      });
+
+      // Nút phát nhạc
+      playMusic.addEventListener('click', () => {
+        bgMusic.play();
+        playMusic.textContent = '🎶 Đang phát...';
+        playMusic.disabled = true;
+      });
+
+      // Hiệu ứng trái tim bay
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 4000);
+      }
+
+      setInterval(createHeart, 300);
+    </script>
+  </body>
+</html>
